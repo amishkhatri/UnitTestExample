@@ -1,10 +1,10 @@
-name: Github Action Demo
+name: GitHub Actions Demo
 on: push
 jobs:
-  Example-Actions-Job: 
-    name: Exploring Github Actions
+  Example-Actions-Job:
+    name: Exploring GitHub Actions
     runs-on: ubuntu-latest
-         steps:
+    steps:
       # Display the event that triggered the workflow
       - run: echo "The job was triggered by a ${{ github.event_name }} event."
       
@@ -47,3 +47,10 @@ jobs:
           ls ${{ runner.tool_cache }}
       
       - run: echo "This job's status is ${{ job.status }}."
+
+  Second-Job:
+    name: The second job running on another runner
+    runs-on: windows-latest
+    needs: Example-Actions-Job
+    steps:
+      - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub."
